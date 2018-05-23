@@ -1,5 +1,5 @@
 Attribute VB_Name = "Codes"
-Sub DrawBox(XBox As Double, YBox As Double)
+Sub DrawDevice(XBox As Double, YBox As Double)
     Dim DiagramServices As Integer
     DiagramServices = ActiveDocument.DiagramServicesEnabled
     ActiveDocument.DiagramServicesEnabled = visServiceVersion140 + visServiceVersion150
@@ -138,7 +138,7 @@ Sub DrawBox(XBox As Double, YBox As Double)
     XBox2 = XBox + XBoxW
     YBox2 = YBox - YBoxH
     
-    y = 2 + LConnects * 3 + RConnects * 3   'Totaly one box and LConnects + RConnects lines + all labels. Started from one.
+    y = 3 + LConnects * 3 + RConnects * 3   'Totaly one box and LConnects + RConnects lines + all labels. Started from one.
     j = 0                                   'Pointer for current object. First is zero
     
     'Convert all coordinates from mm to inches as we remember about this fucking feature of Visio
@@ -171,6 +171,21 @@ Sub DrawBox(XBox As Double, YBox As Double)
     Chars.Begin = 0
     Chars.End = 3
     Chars.Text = DevTxt
+    Application.ActiveWindow.Page.Shapes.ItemFromUniqueID(sGUID(j)).CellsSRC(visSectionCharacter, 0, visCharacterSize).FormulaU = "8 pt"
+    Application.ActiveWindow.Page.Shapes.ItemFromUniqueID(sGUID(j)).CellsSRC(visSectionCharacter, 0, visCharacterColor).FormulaU = "THEMEGUARD(RGB(0,0,0))"
+    GoToHide (sGUID(j))
+    
+    'Drawing label for model of the device
+    Set TxtShp = Application.ActiveWindow.Page.DrawRectangle(XBox + MiMi(XBoxW / 2) - MiMi(7), YBox - MiMi(2), XBox + MiMi(XBoxW / 2) + MiMi(7), YBox - MiMi(2))
+    j = j + 1
+    TxtShp.TextStyle = "Normal"
+    TxtShp.LineStyle = "Text Only"
+    TxtShp.FillStyle = "Text Only"
+    sGUID(j) = TxtShp.UniqueID(visGetOrMakeGUID)    'Add it to array for future grouping
+    Set Chars = Application.ActiveWindow.Page.Shapes.ItemFromUniqueID(sGUID(j)).Characters
+    Chars.Begin = 0
+    Chars.End = 3
+    Chars.Text = ModelTxt
     Application.ActiveWindow.Page.Shapes.ItemFromUniqueID(sGUID(j)).CellsSRC(visSectionCharacter, 0, visCharacterSize).FormulaU = "8 pt"
     Application.ActiveWindow.Page.Shapes.ItemFromUniqueID(sGUID(j)).CellsSRC(visSectionCharacter, 0, visCharacterColor).FormulaU = "THEMEGUARD(RGB(0,0,0))"
     GoToHide (sGUID(j))
