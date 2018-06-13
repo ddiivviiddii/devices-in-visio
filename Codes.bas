@@ -1,4 +1,7 @@
 Attribute VB_Name = "Codes"
+Public Sub macrosik()
+Call DrawDevice(0, 0)
+End Sub
 Sub DrawDevice(XBox As Double, YBox As Double)
     Dim DiagramServices As Integer
     DiagramServices = ActiveDocument.DiagramServicesEnabled
@@ -53,17 +56,17 @@ Sub DrawDevice(XBox As Double, YBox As Double)
     ReDim InnCon(LConnects)
     'Array for output's names
     Dim Outn() As String                'Array for name of outputs
-    ReDim Outn(LConnects)
+    ReDim Outn(RConnects)
     Dim OutCon() As String
-    ReDim OutCon(LConnects)             'Array for type of outputs
+    ReDim OutCon(RConnects)             'Array for type of outputs
     Dim InTxtBox() As MSForms.TextBox   'Array for current input's name in the form
     ReDim InTxtBox(LConnects)
     Dim InConTxtBox() As MSForms.TextBox 'Arrat for current type of inputs in the form
     ReDim InConTxtBox(LConnects)
     Dim OutTxtBox() As MSForms.TextBox   'Array for current output's name in the form
-    ReDim OutTxtBox(LConnects)
+    ReDim OutTxtBox(RConnects)
     Dim OutConTxtBox() As MSForms.TextBox 'Arrat for current type of outputs in the form
-    ReDim OutConTxtBox(LConnects)
+    ReDim OutConTxtBox(RConnects)
     
     Dim TxtPosition As Integer          'Position of text in from with names of connections
     
@@ -161,7 +164,7 @@ Sub DrawDevice(XBox As Double, YBox As Double)
     Application.ActiveWindow.Page.Shapes.ItemFromUniqueID(sGUID(j)).CellsSRC(visSectionObject, visRowLine, visLineWeight).FormulaU = "1 pt"
     
     'Drawing label for position of the device
-    Set TxtShp = Application.ActiveWindow.Page.DrawRectangle(XBox + MiMi(XBoxW / 2) - MiMi(7), YBox + MiMi(1), XBox + MiMi(XBoxW / 2) + MiMi(7), YBox + MiMi(1))
+    Set TxtShp = Application.ActiveWindow.Page.DrawRectangle(XBox + MiMi(XBoxW / 2) - MiMi(7), YBox + MiMi(1.5), XBox + MiMi(XBoxW / 2) + MiMi(7), YBox + MiMi(1.5))
     j = j + 1
     TxtShp.TextStyle = "Normal"
     TxtShp.LineStyle = "Text Only"
