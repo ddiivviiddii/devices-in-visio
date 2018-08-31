@@ -78,7 +78,7 @@ Sub DrawDevice(XBox As Double, YBox As Double)
     'Fill the form
     TxtPosition = 0
     For i = 1 To LConnects
-        If i < 10 Then strin = "IN" & " " & "0" & CStr(i) Else strin = "IN" & " " & CStr(i)
+        If i < 10 Then strin = InTxt & " " & "0" & CStr(i) Else strin = InTxt & " " & CStr(i)
         Set InTxtBox(i - 1) = DeviceForm.Controls.Add("Forms.TextBox.1", "txt_in" & (i))
         With InTxtBox(i - 1)
             .Left = 10
@@ -98,7 +98,7 @@ Sub DrawDevice(XBox As Double, YBox As Double)
     
     TxtPosition = 0
     For i = 1 To RConnects
-        If i < 10 Then strin = "OUT" & " " & "0" & CStr(i) Else strin = "OUT" & " " & CStr(i)
+        If i < 10 Then strin = OutTxt & " " & "0" & CStr(i) Else strin = OutTxt & " " & CStr(i)
         Set OutTxtBox(i - 1) = DeviceForm.Controls.Add("Forms.TextBox.1", "txt_out" & (i))
         With OutTxtBox(i - 1)
             .Left = 140
