@@ -1,5 +1,5 @@
 # devices-in-visio
-Automatic device creation in MS Visio
+Automatic device's creation in MS Visio
 
 This VBA code creates shape 'device' with named inputs/outputs in Visio. 
 Usage:
