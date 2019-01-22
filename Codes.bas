@@ -292,6 +292,12 @@ Sub DrawDevice(XBox As Double, YBox As Double)
           ActiveWindow.Select Application.ActiveWindow.Page.Shapes.ItemFromUniqueID(sGUID(i)), visSelect
     Next i
     ActiveWindow.Selection.Group
+    
+    'Cut from drawing position and....
+    Application.ActiveWindow.Selection.Cut
+    '...and paste to current view position
+    Application.ActiveWindow.Page.Paste
+    
     Application.EndUndoScope UndoScopeID2, True
     ActiveDocument.DiagramServicesEnabled = DiagramServices
 End Sub
